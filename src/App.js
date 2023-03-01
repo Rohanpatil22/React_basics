@@ -1,24 +1,20 @@
-import logo from './logo.svg';
+import pic from "./images/PWSkills-main.png";
+import pic_2 from "./images/search_icon.png";
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div class="navbar">
+      <div><img src={pic} alt="pw_img"></img></div>
+      <div>
+        <img id="search_icon" src={pic_2} alt="search"></img>
+        <input id="inp_1" type="text" placeholder="What do you want to learn?"/>
+      </div>
+      <div><button id="login_btn">Login / Register</button></div>
     </div>
+   
+    </>
   );
 }
 
