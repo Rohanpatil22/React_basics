@@ -17,7 +17,7 @@ img{
   border-radius: 5px;
   color:white;
   font-weight:bold;
-  font-size:15px;
+  font-size:17px;
 }
 
 .navbar{
@@ -32,5 +32,5 @@ img{
   width:20px;
   position: absolute;
   top:33px;
-  left:350px;
+  left:370px;
 }
