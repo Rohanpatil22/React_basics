@@ -32,10 +32,14 @@ function App() {
    <div class="mt-8">
     <img class="w-full"  src={main_img} alt="main_img"/>
    </div>
+   <div class="mt-10">
+   <div  class="text-5xl font-semibold text-center text-blue-800	">Popular Programs</div>
+   <div class="text-center text-xl text-gray-400 mt-4">Most in demand and watched by people.</div>
    <div class="flex justify-center gap-14">
-   <Card card_1={card1} heading="Full Stack Web Development" teacher="Hitesh Choudhary" />
-   <Card card_1={card2} heading="Java With DSA And System Design" teacher="Priya Bhatia"/>
-   <Card card_1={card3} heading="Data Science Masters" teacher="Krish Naik"/>
+      <Card card_1={card1} heading="Full Stack Web Development" teacher="Hitesh Choudhary" />
+      <Card card_1={card2} heading="Java With DSA And System Design" teacher="Priya Bhatia"/>
+      <Card card_1={card3} heading="Data Science Masters" teacher="Krish Naik"/>
+   </div>
    </div>
    
     </>
