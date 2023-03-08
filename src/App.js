@@ -1,3 +1,4 @@
+import React from 'react';
 import pic from "./images/PWSkills-main.png";
 import pic_2 from "./images/search_icon.png";
 import main_img from "./images/main_img.jpg";

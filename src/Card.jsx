@@ -1,5 +1,5 @@
 // import card_1 from "./images/card_1.jpg"
-
+import React from 'react';
 
 function Card ({card_1, heading, teacher}) {
 return(
