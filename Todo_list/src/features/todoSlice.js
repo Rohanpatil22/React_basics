@@ -30,11 +30,28 @@ export const todoSlice = createSlice({
 
         remove_all_list :(state)=>{
             state.todos.length=0;
+        },
+
+        update_todo :(state,action)=>{
+
+            
+            // state.todos.map((item)=>{if(item.id===action.payload.id){item.text=action.payload.text}return state.todos});
+            console.log(action.payload);
+
+            state.todos.map((item)=>
+            {if(item.id===action.payload[0].id)
+                {
+                    console.log("yes");
+                    item.text=action.payload[1];
+                }
+                return state.todos;
+            });
+
         }
     }
 })
 
-export const {addtodo,remove_todo,remove_all_list} = todoSlice.actions;
+export const {addtodo,remove_todo,remove_all_list,update_todo} = todoSlice.actions;
 export default todoSlice.reducer
 
 
