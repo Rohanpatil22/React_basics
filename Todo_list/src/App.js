@@ -52,6 +52,8 @@ function App() {
     toast.success('All task removed successfully !', {
       position: toast.POSITION.TOP_RIGHT
     });
+    setbuttontxt("Add Task");
+    setflag(false);
   }
 
   const update_task = (task) => {
