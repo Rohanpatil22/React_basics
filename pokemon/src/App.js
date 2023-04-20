@@ -1,59 +1,55 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
-import Card from './card.jsx';
-import Pokeinfo from './pokeinfo';
- import { useState } from 'react';
-import { useEffect } from 'react';
-import pokemon from './images/pokemon-logo.png'
+ import axios from 'axios';
+// import Card from './card.jsx';
+// import Pokeinfo from './pokeinfo';
+  import { useState,useEffect } from 'react';
+// import { useEffect } from 'react';
+// import pokemon from './images/pokemon-logo.png'
 
 
 function App() {
-  // const [count, setcount] = useState(0);
-  const[intial_url]=useState('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20');
- 
-  
-  useEffect(() => {
-    fetch_data();
+const [next_url,setnext_url]=useState();
+const [prev_url,setprev_url]=useState();
+const[curr_data,setcurr_data]=useState([]);
+const [poke_info,setpoke_info]=useState([]);
+
+const get_poke_data=async()=>{
+  setpoke_info([]);
+  const all_data=await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then(async(res)=>{
+
+ setcurr_data(res.data.results);
+   console.log(curr_data);
+  setnext_url(res.next);
+   
   });
-
- let poke_arr=[];
-  async function fetch_data (){
-   await axios.get(intial_url).then((res) => {
-     
-       console.log(res.data);
-      get_poke_data(res.data.results)
-     
-    });
-  }
-
-  const get_poke_data=async(res)=>{
-
   
-    res.map(async(item)=>{
-      const result= await axios.get(item.url);
-       poke_arr.push(result.data);
-  })
-   console.log(poke_arr);
+  const all_poke_info=(data)=>{
+
+    data.forEach(async(item)=>{
+      await axios.get(item.url).then((res)=>{
+        setpoke_info((old_data)=>[...old_data,res.data]);
+      })
+      
+    })
+
+    
 
   }
+  
+all_poke_info(curr_data);
+ console.log(poke_info)
 
- 
-return (
-  <>
-  <div className="flex justify-center "><img className="w-1/4 mt-4" src={pokemon} alt="pkemon"></img></div>
-    <div className="flex align-center mt-10 ">
-      <div className="grid grid-cols-2 gap-y-6 w-3/5">
+}
 
-     <Card poke_data={poke_arr}/>
-      </div>
-
-      <div>
-        <Pokeinfo />
-      </div>
-    </div>
-  </>
-);
+  // useEffect(()=>{
+  //   get_poke_data();
+  // },[])
+  return(
+    <>
+    <button style={{color:"white",backgroundColor:"green",padding:"5px"}} onClick={get_poke_data}>fetch data</button>
+    </>
+  );
 }
 
 export default App;
