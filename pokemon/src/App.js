@@ -1,53 +1,67 @@
 import React from 'react';
 import './App.css';
  import axios from 'axios';
-// import Card from './card.jsx';
+import Card from './card.jsx';
 // import Pokeinfo from './pokeinfo';
-  import { useState,useEffect } from 'react';
+  import { useState } from 'react';
 // import { useEffect } from 'react';
 // import pokemon from './images/pokemon-logo.png'
 
 
 function App() {
-const [next_url,setnext_url]=useState();
-const [prev_url,setprev_url]=useState();
-const[curr_data,setcurr_data]=useState([]);
-const [poke_info,setpoke_info]=useState([]);
 
-const get_poke_data=async()=>{
-  setpoke_info([]);
-  const all_data=await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20").then(async(res)=>{
 
- setcurr_data(res.data.results);
-   console.log(curr_data);
-  setnext_url(res.next);
-   
-  });
-  
-  const all_poke_info=(data)=>{
+  const [pokemonList, setPokemonList] = useState({});
+  const [pokemonResults, setPokemonResults] = useState();
 
-    data.forEach(async(item)=>{
-      await axios.get(item.url).then((res)=>{
-        setpoke_info((old_data)=>[...old_data,res.data]);
+  const getPokeListData = () => {
+    axios
+      .get('https://pokeapi.co/api/v2/pokemon?limit=20')
+      .then(response => {
+        console.log(response);
+
+        const allPokemonResults = response.data.results;
+        setPokemonList({
+          next: response.data.next,
+          results: allPokemonResults
+        });
+
+        return allPokemonResults;
       })
-      
-    })
+      .then(response => {
+        console.log(response);
+        if (response.length > 0) {
+          setPokemonResults( response);
+        }
+      });
+  };
 
-    
 
-  }
-  
-all_poke_info(curr_data);
- console.log(poke_info)
-
-}
-
-  // useEffect(()=>{
-  //   get_poke_data();
-  // },[])
   return(
     <>
-    <button style={{color:"white",backgroundColor:"green",padding:"5px"}} onClick={get_poke_data}>fetch data</button>
+    {/* <button style={{color:"white",backgroundColor:"green",padding:"5px"}} onClick={get_poke_data}>fetch data</button> */}
+    <>
+      { <button
+        style={{ color: 'white', backgroundColor: 'green', padding: '5px' }}
+        onClick={getPokeListData}
+      >
+        fetch data
+      </button>
+/*
+      {pokemonList && (
+        <pre className="text-white">{JSON.stringify(pokemonList)}</pre>
+      )}
+
+      {pokemonResults && (
+        <pre className="text-white">{JSON.stringify(pokemonResults)}</pre>
+      )} */}
+      {
+        pokemonResults && (
+        <Card pokeData={pokemonResults}/>
+        )
+      }
+      
+    </>
     </>
   );
 }
