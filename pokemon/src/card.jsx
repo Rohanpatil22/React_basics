@@ -4,7 +4,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 
 
-function Card({pokeData}){
+function Card({pokeData,flag_check}){
   const [Eachpoke,setEachPoke]=useState([]);
   const[selpoke,setselpoke]=useState();
   const[flag,setflag]=useState(0);
@@ -23,6 +23,7 @@ function Card({pokeData}){
   {
       console.log(info);
       setflag(1);
+      flag_check(1);
       setselpoke(info);
   }
 
@@ -41,11 +42,11 @@ function Card({pokeData}){
 }
 // console.log(Eachpoke);
     return (
-        <> {flag===0 && Eachpoke &&  <div className="grid grid-cols-4 w-4/5 m-auto gap-6">{Eachpoke.map((element,index)=> (
+        <> {flag===0 && Eachpoke &&  <div className="grid grid-cols-4 w-4/5 m-auto gap-6 mt-5">{Eachpoke.map((element,index)=> (
          
             // console.log(element)
              <div className="w-52 h-64 bg-stone-500 rounded" key={index} onClick={()=>clickedPokeData(element)}>  
-              <div  className="text-purple-100 text-center text-lg mb-4 ">{element.name}</div>     
+              <div  className="text-purple-100 text-center text-lg mb-4 ">{element.name.toUpperCase()}</div>     
             <div className="flex justify-center mt-4 text-bold"><img className="w-1/2" src={element.sprites.other.dream_world.front_default} alt={element.name}/></div>
            
             </div>
@@ -55,9 +56,9 @@ function Card({pokeData}){
 
 
          {flag===1 && 
-          <div className="h-full">
+          <div className="h-full mt-5">
             <div className="w-full text-right">
-              <buttton className="bg-red-600 p-2 w54 mr-10 text-center text-neutral-100 font-bold rounded text-lg" onClick={() => { setflag(0) }}>Close</buttton>
+              <buttton className="bg-red-600 p-2 w54 mr-10 text-center text-neutral-100 font-bold rounded text-lg" onClick={() => { setflag(0);flag_check(0); }}>Close</buttton>
             </div>
             <div className=" mt-20 flex justify-center items-center h-full">
               <div className="w-1/3 rounded-3xl bg-stone-500" style={{height:"520px"}}>
