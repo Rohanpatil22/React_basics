@@ -57,9 +57,7 @@ function Card({pokeData,flag_check}){
 
          {flag===1 && 
           <div className="h-full mt-5">
-            <div className="w-full text-right">
-              <buttton className="bg-red-600 p-2 w54 mr-10 text-center text-neutral-100 font-bold rounded text-lg" onClick={() => { setflag(0);flag_check(0); }}>Close</buttton>
-            </div>
+            
             <div className=" mt-20 flex justify-center items-center h-full">
               <div className="w-1/3 rounded-3xl bg-stone-500" style={{height:"520px"}}>
                 <div className="flex justify-center mt-3"><img className="w-40" src={selpoke.sprites.other.dream_world.front_default} alt={selpoke.name}></img></div>
@@ -89,6 +87,9 @@ function Card({pokeData,flag_check}){
                   </table>
                 </div>
               </div>
+            </div>
+            <div className="text-center mt-1 flex justify-center">
+              <buttton className="bg-red-600 p-2 mt-10 w-28 block text-center text-neutral-100 font-bold rounded text-lg" onClick={() => { setflag(0);flag_check(0); }}>Back</buttton>
             </div>
 
           </div>

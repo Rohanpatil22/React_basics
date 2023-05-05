@@ -81,19 +81,23 @@ function App() {
         fetch data
       </button>
       } */}
+      
       {
-        pokemonResults && (
+       
           <>
           {check===0 && <div style={{width:"95%",margin:"auto",textAlign:"center",marginLeft:"35%"}}><img className="w-1/4" src={pokemon} alt="poke_banner"></img></div>}
+          { pokemonResults && (
            <Card flag_check={flag_check} pokeData={pokemonResults}/>
+           )
+          }
            {check===0 && <div className='text-center m-5'> 
            <button className="bg-blue-500 p-2 rounded text-white font-bold w-28" onClick={getPrevPokeListData}>Previous</button>
             <button className="bg-blue-500 p-2 rounded text-white font-bold w-28 ml-2" onClick={getPokeListData}>Next</button>
            </div>}
-            
           </>
        
-        )
+       
+       
       }
       
     </>
